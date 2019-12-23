@@ -1,7 +1,6 @@
 import { Component, ElementRef, ViewChild } from '@angular/core';
 import { chart } from 'highcharts';
-import * as Highcharts from 'highcharts';
-
+import { AppInit } from './app.init';
 @Component({
   selector: 'my-app',
   templateUrl: './app.component.html',
@@ -9,55 +8,7 @@ import * as Highcharts from 'highcharts';
 })
 export class AppComponent {
  @ViewChild('chartTarget') chartTarget: ElementRef;
-  chartType: any = [
-    {
-      label: 'line',
-      value: 'line',
-      class: 'fa fa-line-chart'
-    },
-    {
-      label: 'bar',
-      value: 'bar',
-      class: 'flaticon-graphic'
-    },
-    {
-      label: 'column',
-      value: 'column',
-      class: 'fa fa-bar-chart'
-    },
-    {
-      label: 'area',
-      value: 'area',
-      class: 'fa fa-area-chart'
-    },
-    {
-      label: 'spline',
-      value: 'spline',
-      class: 'flaticon-business-stats'
-    },
-    {
-      label: 'areaspline',
-      value: 'areaspline',
-      class: 'flaticon-horizontal-bars-chart'
-    },
-    {
-      label: 'pie',
-      value: 'pie',
-      class: 'fa fa-pie-chart'
-    },
-    {
-      label: 'scatter',
-      value: 'scatter',
-      class: 'fa fa-pie-chart'
-    },
-    // {
-    //   label: 'heatmap',
-    //   value: 'heatmap',
-    //   class: 'fa fa-pie-chart'
-    // }
-  ];
-  chart: Highcharts.ChartObject;
-  options: Highcharts.Options;
+ init = new AppInit();
 
   ngAfterViewInit() {
     this.chartData();
@@ -137,7 +88,7 @@ export class AppComponent {
         }]
       };
     }
-    this.chart = chart(this.chartTarget.nativeElement, this.options);
+    this.init.chart = chart(this.chartTarget.nativeElement, this.init.options);
   }
   changeChart(type) {
     this.chartData(type);

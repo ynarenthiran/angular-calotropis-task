@@ -1,5 +1,5 @@
 <div>
-  <button *ngFor="let b of chartType" (click)="changeChart(b.value)">{{b.label}}</button>
+  <button *ngFor="let b of init.chartTypeList" (click)="changeChart(b.value)">{{b.label}}</button>
 </div>
 <button (click)="invert()">Invert</button>
 <div #chartTarget></div>
