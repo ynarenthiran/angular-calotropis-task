@@ -3,7 +3,8 @@ import * as Highcharts from 'highcharts';
 export class AppInit {
   chartTypeList: any = ChartTypes;
   chart: Highcharts.ChartObject;
-  options: Highcharts.Options
+  options: Highcharts.Options;
+  userName: any = 'ynarenthiran';
 }
 const ChartTypes = [
     {
