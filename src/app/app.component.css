@@ -1,3 +1,44 @@
 p {
   font-family: Lato;
 }
+.button {
+    background-color: white;
+    color: black;
+    border: 2px solid #4CAF50;
+    margin: 0 2px 0 2px;
+    padding: 4px 12px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    border-radius: 5px;
+}
+.chart-container {
+  width: 100% !important;
+}
+.frappe-base-chart {
+  width: 100%;
+  text-align: center;
+}
+
+.frappe-base-chart input[type=text] {
+  padding: 6px;
+  margin: 8px 0 8px 0;
+  font-size: 17px;
+  border-radius: 5px;
+}
+
+.frappe-base-chart .search-container button {
+  float: right;
+  padding: 6px 10px;
+  margin-top: 8px;
+  margin-right: 16px;
+  background: #ddd;
+  font-size: 17px;
+  border: none;
+  cursor: pointer;
+}
+
+.frappe-base-chart .search-container button:hover {
+  background: #ccc;
+}

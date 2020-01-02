@@ -1,1 +1,11 @@
-<div #chartTarget></div>
+<div class="frappe-base-chart search-container">
+    <input type="text" [(ngModel)]="init.userName" placeholder="User Name">
+    <button class="button" type="button" (click)="getChart()"><i class="fa fa-search"></i></button>
+  </div>
+<div [hidden]="!resData?.years?.length" class="frappe-base-chart">
+  <button class="button" type="button" *ngFor="let opt of resData?.years" (click)="formChart(opt)">{{opt.year}}</button>
+  <div #chartTarget></div>
+</div>
+<div [hidden]="resData?.years?.length" class="frappe-base-chart">
+  {{(resData.years) ? 'No Data Found' : ''}}
+</div>

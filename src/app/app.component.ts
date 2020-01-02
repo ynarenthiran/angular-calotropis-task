@@ -1,4 +1,4 @@
-import { Component, ElementRef, ViewChild } from "@angular/core";
+import { Component, ElementRef, ViewChild, ViewEncapsulation } from "@angular/core";
 import { AppInit } from "./app.init";
 import { AppService } from "./app.service";
 import { Chart } from "frappe-charts/dist/frappe-charts.min.esm";
@@ -7,32 +7,41 @@ import * as _ from "lodash";
 @Component({
   selector: "my-app",
   templateUrl: "./app.component.html",
-  styleUrls: ["./app.component.css"]
+  styleUrls: ["./app.component.css"],
+  encapsulation: ViewEncapsulation.None
 })
 export class AppComponent {
   constructor(private service: AppService) {}
   @ViewChild("chartTarget") chartTarget: ElementRef;
   init = new AppInit();
-  ngOnInit() {
+  ngOnInit() {}
+  getChart() {
     this.service.getChartData(this.init.userName).subscribe((res: any) => {
-      const dataPoints = {};
-      const contributions = _.filter(res.contributions, ct => {
-        return ct.date.includes("2019");
+      this.init.resData = res;
+      this.formChart(this.resData.years[0]);
+    });
+  }
+  get resData() {
+    return this.init.resData;
+  }
+  formChart(e) {
+    console.error(e);
+    const dataPoints = {};
+      const contributions = _.filter(this.resData.contributions, ct => {
+        return ct.date.includes(e.year);
       });
       _.each(contributions, c => {
           dataPoints[c.date] = c.count;
       });
       const data = {
         dataPoints: dataPoints,
-        start: new Date(res.years[1].range.start),
-        end: new Date(res.years[1].range.end)
+        start: new Date(e.range.start),
+        end: new Date(e.range.end)
       };
-      console.error(data);
       let chart = new Chart(this.chartTarget.nativeElement, {
-        title: "My Awesome Chart",
+        title: `${e.total} contributions in this year`,
         type: "heatmap",
         data: data
       });
-    });
   }
 }
