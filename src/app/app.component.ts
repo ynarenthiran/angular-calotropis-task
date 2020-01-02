@@ -20,12 +20,14 @@ export class AppComponent {
       this.init.resData = res;
       this.formChart(this.resData.years[0]);
     });
+    this.service.getReposData(this.init.userName).subscribe((res: any) => {
+      console.error(res);
+    });
   }
   get resData() {
     return this.init.resData;
   }
   formChart(e) {
-    console.error(e);
     const dataPoints = {};
       const contributions = _.filter(this.resData.contributions, ct => {
         return ct.date.includes(e.year);

@@ -10,4 +10,8 @@ export class AppService {
     return this.http.get(`https://github-contributions-api.now.sh/v1/${userName}`);
   }
 
+  getReposData(userName) {
+    return this.http.get(`https://api.github.com/users/${userName}/repos`);
+  }
+
 }
